@@ -4,6 +4,7 @@ from http import HTTPStatus
 
 from config import TelegramAPIConfig
 from logger import logger
+from html_parser import StopCovidHTMLParser
 
 
 def get_updates_json() -> dict:
@@ -23,6 +24,27 @@ def get_updates_json() -> dict:
         return {}
 
     return response.json()
+
+
+
+DAILY_STAT_PHRASE = 'Выявлено заболевшихза последние сутки'
+
+
+def get_info(url):
+    response = requests.get(url, timeout=TelegramAPIConfig.TIMEOUT_SECONDS)
+
+    parser = StopCovidHTMLParser()
+    parser.feed(response.text)
+    daily_stat = parser.DATA_DICT.get(DAILY_STAT_PHRASE)
+    if daily_stat is None:
+        logger.error("Daily statistic was not found.")
+        logger.debug(f"Info that was managed to parse: {parser.DATA_DICT}")
+
+    print(parser.DATA_DICT)
+    return daily_stat
+
+
+get_info("https://xn--80aesfpebagmfblc0a.xn--p1ai/")
 
 
 def last_update(data):

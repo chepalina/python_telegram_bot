@@ -7,6 +7,8 @@ TelegramAPIConfig.UPDATES_URL - bot updates (24 hour period)
 
 BOT_TOKEN = ''
 
+WEBSITE_URL = "https://xn--80aesfpebagmfblc0a.xn--p1ai/"
+
 
 class TelegramAPIConfig:
 
