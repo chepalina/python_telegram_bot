@@ -18,4 +18,5 @@ REQUEST_KWARGS = {
 }
 
 BOT_START_TEXT = "Hi! I'm bot, who knows a few statistic about COVID-19 in Russia." \
-                 "\nUse commands: \n/get_stat - to get current statistic."
+                 "\nUse commands: \n/get_stat - to get current statistic. " \
+                 "\n/get_dates - get dates when boarders will be opened."
