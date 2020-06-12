@@ -7,11 +7,15 @@ TelegramAPIConfig.UPDATES_URL - bot updates (24 hour period)
 
 BOT_TOKEN = ''
 
-WEBSITE_URL = "https://xn--80aesfpebagmfblc0a.xn--p1ai/"
+REQUEST_TIMEOUT_SECONDS = 3
 
+REQUEST_KWARGS = {
+    'proxy_url': 'socks5://t3.learn.python.ru:1080',
+    'urllib3_proxy_kwargs': {
+        'username': 'learn',
+        'password': 'python',
+    }
+}
 
-class TelegramAPIConfig:
-
-    API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
-    TIMEOUT_SECONDS = 3
-    UPDATES_URL = f"{API_URL}/getUpdates"
+BOT_START_TEXT = "Hi! I'm bot, who knows a few statistic about COVID-19 in Russia." \
+                 "\nUse commands: \n/get_stat - to get current statistic."
