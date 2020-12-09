@@ -1,7 +1,8 @@
-"""Source code -
+"""Source code.
+
 https://github.com/schmijos/html-table-parser-python3/blob/master/html_table_parser/parser.py
 """
-from html_parser import HTMLParser
+from html.parser import HTMLParser
 
 
 class HTMLTableParser(HTMLParser):
