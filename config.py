@@ -1,15 +1,16 @@
-"""Telegram bot configuration.
-
-BOT_TOKEN - token to access the HTTP API
-TelegramAPIConfig.API_URL - Telegram API url
-TelegramAPIConfig.UPDATES_URL - bot updates (24 hour period)
-"""
-
-BOT_TOKEN = ''
+"""Telegram bot configuration."""
 
 
-class TelegramAPIConfig:
+# Token to access the HTTP API
+BOT_TOKEN = '912794474:AAGnEfiHOj396xJ7hMduva16Dv7wbPysuvE'
 
-    API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
-    TIMEOUT_SECONDS = 3
-    UPDATES_URL = f"{API_URL}/getUpdates"
+REQUEST_TIMEOUT_SECONDS = 3
+
+# Proxy for those old times, when Telegram was blocked.
+PROXY = {
+    'proxy_url': 'socks5://t3.learn.python.ru:1080',
+    'urllib3_proxy_kwargs': {
+        'username': 'learn',
+        'password': 'python',
+    }
+}

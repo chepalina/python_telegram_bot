@@ -1,31 +1,31 @@
-import requests
+from telegram.ext import CommandHandler, Updater
 
-from http import HTTPStatus
-
-from config import TelegramAPIConfig
-from logger import logger
+from commands import start, get_statistic, get_open_boarder_dates
+from config import PROXY, BOT_TOKEN
 
 
-def get_updates_json() -> dict:
-    """Get updates from bot API."""
-    try:
-        response = requests.get(TelegramAPIConfig.UPDATES_URL, timeout=TelegramAPIConfig.TIMEOUT_SECONDS)
-    except (ConnectionError, requests.exceptions.ConnectTimeout) as http_ex:
-        logger.error(f"Connection to bot API failed: {http_ex}.")
-        return {}
+def build_bot():
+    """Create bot updater, add handlers."""
+    bot_ = Updater(token=BOT_TOKEN, use_context=True, request_kwargs=PROXY)
 
-    if response.status_code != HTTPStatus.OK:
-        logger.error(f"Telegram API code error. Updates request failed with {response.status_code} code.")
-        return {}
+    dispatcher = bot_.dispatcher
 
-    if not response.json().get("ok"):
-        logger.error(f"Telegram API response error. Updates request OK parameter is not true.")
-        return {}
+    start_handler = CommandHandler('start', start)
+    dispatcher.add_handler(start_handler)
 
-    return response.json()
+    help_handler = CommandHandler('help', start)
+    dispatcher.add_handler(help_handler)
+
+    get_stat_handler = CommandHandler('statistic', get_statistic)
+    dispatcher.add_handler(get_stat_handler)
+
+    get_dates_handler = CommandHandler('boarders', get_open_boarder_dates)
+    dispatcher.add_handler(get_dates_handler)
+
+    return bot_
 
 
-def last_update(data):
-    results = data['result']
-    total_updates = len(results) - 1
-    return results[total_updates]
+if __name__ == '__main__':
+
+    bot = build_bot()
+    bot.start_polling()

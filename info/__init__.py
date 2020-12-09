@@ -1,0 +1,1 @@
+from info.statistic import get_statistic
