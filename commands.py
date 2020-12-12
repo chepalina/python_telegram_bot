@@ -1,9 +1,17 @@
+from enum import Enum
 import info
 
 BOT_START_TEXT = "Hi! I'm bot, who knows a few statistic about COVID-19 in Russia." \
-                 "\nUse info: " \
+                 "\nUse commands: " \
                  "\n/statistic - get current statistic. " \
                  "\n/news - get last news about COVID-19."
+
+
+class Command(Enum):
+    start = 'start'
+    help = 'start'
+    statistic = 'get_statistic'
+    news = 'get_last_news'
 
 
 def start(update, context):
