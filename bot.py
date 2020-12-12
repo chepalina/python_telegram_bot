@@ -8,11 +8,9 @@ def build_bot():
     """Create bot updater, add handlers."""
     bot = Updater(token=BOT_TOKEN, use_context=True, request_kwargs=PROXY)
 
-    dispatcher = bot.dispatcher
-
     for name, member in commands.Command.__members__.items():
         handler = CommandHandler(name, getattr(commands, member.value))
-        dispatcher.add_handler(handler)
+        bot.dispatcher.add_handler(handler)
 
     return bot
 
