@@ -14,3 +14,7 @@ PROXY = {
         'password': 'python',
     }
 }
+
+GOOGLE_SEARCH_PHRASE = 'COVID-19'
+GOOGLE_SEARCH_PERIOD = '1d'
+GOOGLE_SEARCH_LIMIT = 3

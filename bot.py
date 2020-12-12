@@ -1,6 +1,6 @@
 from telegram.ext import CommandHandler, Updater
 
-from commands import start, get_statistic, get_open_boarder_dates
+from commands import start, get_statistic, get_last_news
 from config import PROXY, BOT_TOKEN
 
 
@@ -19,7 +19,7 @@ def build_bot():
     get_stat_handler = CommandHandler('statistic', get_statistic)
     dispatcher.add_handler(get_stat_handler)
 
-    get_dates_handler = CommandHandler('boarders', get_open_boarder_dates)
+    get_dates_handler = CommandHandler('news', get_last_news)
     dispatcher.add_handler(get_dates_handler)
 
     return bot_
